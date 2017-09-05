@@ -1,6 +1,6 @@
 /**
  * @file Cross-browser array-like slicer.
- * @version 1.0.0
+ * @version 1.1.0
  * @author Xotic750 <Xotic750@gmail.com>
  * @copyright  Xotic750
  * @license {@link <https://opensource.org/licenses/MIT> MIT}
@@ -13,9 +13,7 @@ var toObject = require('to-object-x');
 var toInteger = require('to-integer-x');
 var toLength = require('to-length-x');
 var isUndefined = require('validate.io-undefined');
-var splitString = require('has-boxed-string-x') === false;
-var isString = splitString && require('is-string');
-var split = splitString && String.prototype.split;
+var splitIfBoxedBug = require('split-if-boxed-bug-x');
 
 var setRelative = function _setRelative(value, length) {
   return value < 0 ? Math.max(length + value, 0) : Math.min(value, length);
@@ -54,8 +52,7 @@ var setRelative = function _setRelative(value, length) {
  * // citrus contains ['Orange','Lemon']
  */
 module.exports = function slice(arrayLike, start, end) {
-  var object = toObject(arrayLike);
-  var iterable = splitString && isString(object) ? split.call(object, '') : object;
+  var iterable = splitIfBoxedBug(toObject(arrayLike));
   var length = toLength(iterable.length);
   var k = setRelative(toInteger(start), length);
   var relativeEnd = isUndefined(end) ? length : toInteger(end);

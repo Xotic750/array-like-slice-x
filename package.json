@@ -1,6 +1,6 @@
 {
   "name": "array-like-slice-x",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Cross-browser array-like slicer.",
   "homepage": "https://github.com/Xotic750/array-like-slice-x",
   "author": {
@@ -29,8 +29,7 @@
     "url": "https://github.com/Xotic750/array-like-slice-x/issues"
   },
   "dependencies": {
-    "has-boxed-string-x": "^1.0.1",
-    "is-string": "^1.0.4",
+    "split-if-boxed-bug-x": "^1.0.0",
     "to-integer-x": "^2.1.0",
     "to-length-x": "^2.1.0",
     "to-object-x": "^1.4.1",
