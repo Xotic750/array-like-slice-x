@@ -1,6 +1,6 @@
 /**
  * @file Cross-browser array-like slicer.
- * @version 1.1.0
+ * @version 1.2.0
  * @author Xotic750 <Xotic750@gmail.com>
  * @copyright  Xotic750
  * @license {@link <https://opensource.org/licenses/MIT> MIT}
@@ -10,13 +10,21 @@
 'use strict';
 
 var toObject = require('to-object-x');
-var toInteger = require('to-integer-x');
-var toLength = require('to-length-x');
+var toInteger = require('to-integer-x').toInteger2018;
+var toLength = require('to-length-x').toLength2018;
 var isUndefined = require('validate.io-undefined');
 var splitIfBoxedBug = require('split-if-boxed-bug-x');
 
+var getMax = function _getMax(a, b) {
+  return a >= b ? a : b;
+};
+
+var getMin = function _getMin(a, b) {
+  return a <= b ? a : b;
+};
+
 var setRelative = function _setRelative(value, length) {
-  return value < 0 ? Math.max(length + value, 0) : Math.min(value, length);
+  return value < 0 ? getMax(length + value, 0) : getMin(value, length);
 };
 
 /**
@@ -58,7 +66,7 @@ module.exports = function slice(arrayLike, start, end) {
   var relativeEnd = isUndefined(end) ? length : toInteger(end);
   var finalEnd = setRelative(relativeEnd, length);
   var val = [];
-  val.length = Math.max(finalEnd - k, 0);
+  val.length = getMax(finalEnd - k, 0);
   var next = 0;
   while (k < finalEnd) {
     if (k in iterable) {
