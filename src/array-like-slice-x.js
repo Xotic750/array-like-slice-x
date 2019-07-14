@@ -1,29 +1,27 @@
 /**
  * @file Cross-browser array-like slicer.
- * @version 1.2.0
- * @author Xotic750 <Xotic750@gmail.com>
- * @copyright  Xotic750
+ * @version 1.2.0.
+ * @author Xotic750 <Xotic750@gmail.com>.
+ * @copyright  Xotic750.
  * @license {@link <https://opensource.org/licenses/MIT> MIT}
- * @module array-like-slice-x
+ * @module Array-like-slice-x.
  */
 
-'use strict';
+const toObject = require('to-object-x');
+const toInteger = require('to-integer-x').toInteger2018;
+const toLength = require('to-length-x').toLength2018;
+const isUndefined = require('validate.io-undefined');
+const splitIfBoxedBug = require('split-if-boxed-bug-x');
 
-var toObject = require('to-object-x');
-var toInteger = require('to-integer-x').toInteger2018;
-var toLength = require('to-length-x').toLength2018;
-var isUndefined = require('validate.io-undefined');
-var splitIfBoxedBug = require('split-if-boxed-bug-x');
-
-var getMax = function _getMax(a, b) {
+const getMax = function _getMax(a, b) {
   return a >= b ? a : b;
 };
 
-var getMin = function _getMin(a, b) {
+const getMin = function _getMin(a, b) {
   return a <= b ? a : b;
 };
 
-var setRelative = function _setRelative(value, length) {
+const setRelative = function _setRelative(value, length) {
   return value < 0 ? getMax(length + value, 0) : getMin(value, length);
 };
 
@@ -32,7 +30,7 @@ var setRelative = function _setRelative(value, length) {
  * array object selected from begin to end (end not included). The original
  * array will not be modified.
  *
- * @param {!Object} argsObject - The `arguments` to slice.
+ * @param {!object} argsObject - The `arguments` to slice.
  * @param {number} [start] - Zero-based index at which to begin extraction.
  *  A negative index can be used, indicating an offset from the end of the
  *  sequence. slice(-2) extracts the last two elements in the sequence.
@@ -60,14 +58,14 @@ var setRelative = function _setRelative(value, length) {
  * // citrus contains ['Orange','Lemon']
  */
 module.exports = function slice(arrayLike, start, end) {
-  var iterable = splitIfBoxedBug(toObject(arrayLike));
-  var length = toLength(iterable.length);
-  var k = setRelative(toInteger(start), length);
-  var relativeEnd = isUndefined(end) ? length : toInteger(end);
-  var finalEnd = setRelative(relativeEnd, length);
-  var val = [];
+  const iterable = splitIfBoxedBug(toObject(arrayLike));
+  const length = toLength(iterable.length);
+  let k = setRelative(toInteger(start), length);
+  const relativeEnd = isUndefined(end) ? length : toInteger(end);
+  const finalEnd = setRelative(relativeEnd, length);
+  const val = [];
   val.length = getMax(finalEnd - k, 0);
-  var next = 0;
+  let next = 0;
   while (k < finalEnd) {
     if (k in iterable) {
       val[next] = iterable[k];
