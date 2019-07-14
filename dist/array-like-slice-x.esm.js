@@ -4,18 +4,17 @@ import toLength from 'to-length-x';
 import isUndefined from 'validate.io-undefined';
 import splitIfBoxedBug from 'split-if-boxed-bug-x';
 
-const getMax = function _getMax(a, b) {
+var getMax = function _getMax(a, b) {
   return a >= b ? a : b;
 };
 
-const getMin = function _getMin(a, b) {
+var getMin = function _getMin(a, b) {
   return a <= b ? a : b;
 };
 
-const setRelative = function _setRelative(value, length) {
+var setRelative = function _setRelative(value, length) {
   return value < 0 ? getMax(length + value, 0) : getMin(value, length);
 };
-
 /**
  * The slice() method returns a shallow copy of a portion of an array into a new
  * array object selected from begin to end (end not included). The original
@@ -38,15 +37,18 @@ const setRelative = function _setRelative(value, length) {
  *  the end of the sequence (arr.length).
  * @returns {Array} A new array containing the extracted elements.
  */
+
+
 export default function slice(arrayLike, start, end) {
-  const iterable = splitIfBoxedBug(toObject(arrayLike));
-  const length = toLength(iterable.length);
-  let k = setRelative(toInteger(start), length);
-  const relativeEnd = isUndefined(end) ? length : toInteger(end);
-  const finalEnd = setRelative(relativeEnd, length);
-  const val = [];
+  var iterable = splitIfBoxedBug(toObject(arrayLike));
+  var length = toLength(iterable.length);
+  var k = setRelative(toInteger(start), length);
+  var relativeEnd = isUndefined(end) ? length : toInteger(end);
+  var finalEnd = setRelative(relativeEnd, length);
+  var val = [];
   val.length = getMax(finalEnd - k, 0);
-  let next = 0;
+  var next = 0;
+
   while (k < finalEnd) {
     if (k in iterable) {
       val[next] = iterable[k];
@@ -58,3 +60,5 @@ export default function slice(arrayLike, start, end) {
 
   return val;
 }
+
+//# sourceMappingURL=array-like-slice-x.esm.js.map

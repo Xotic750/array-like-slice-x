@@ -1,37 +1,16 @@
-let arrayLikeSlice;
-
-if (typeof module === 'object' && module.exports) {
-  require('es5-shim');
-  require('es5-shim/es5-sham');
-
-  if (typeof JSON === 'undefined') {
-    JSON = {};
-  }
-
-  require('json3').runInContext(null, JSON);
-  require('es6-shim');
-  const es7 = require('es7-shim');
-  Object.keys(es7).forEach(function(key) {
-    const obj = es7[key];
-
-    if (typeof obj.shim === 'function') {
-      obj.shim();
-    }
-  });
-  arrayLikeSlice = require('../../index.js');
-} else {
-  arrayLikeSlice = returnExports;
-}
+import arrayLikeSlice from '../src/array-like-slice-x';
 
 const documentElement = typeof document !== 'undefined' && document.documentElement;
 const itHasDocumentElement = documentElement ? it : xit;
 
 describe('arrayLikeSlice', function() {
   it('exports a function', function() {
+    expect.assertions(1);
     expect(typeof arrayLikeSlice).toBe('function');
   });
 
   it('with 1 arg returns an array of the arg', function() {
+    expect.assertions(4);
     const o = [3, '4', {}];
     const r = arrayLikeSlice(o);
     expect(r).toHaveLength(3);
@@ -41,6 +20,7 @@ describe('arrayLikeSlice', function() {
   });
 
   it('with 2 args returns an array of the arg starting at the 2nd arg', function() {
+    expect.assertions(3);
     const o = [3, '4', 5, null];
     const r = arrayLikeSlice(o, 2);
     expect(r).toHaveLength(2);
@@ -49,6 +29,7 @@ describe('arrayLikeSlice', function() {
   });
 
   it('with 3 args returns an array of the arg from the 2nd to the 3rd arg', function() {
+    expect.assertions(2);
     const o = [3, '4', 5, null];
     const r = arrayLikeSlice(o, 1, 2);
     expect(r).toHaveLength(1);
@@ -56,6 +37,7 @@ describe('arrayLikeSlice', function() {
   });
 
   it('begins at an offset from the end and includes all following elements', function() {
+    expect.assertions(8);
     const o = [3, '4', 5, null];
     let r = arrayLikeSlice(o, -2);
     expect(r).toHaveLength(2);
@@ -71,6 +53,7 @@ describe('arrayLikeSlice', function() {
   });
 
   it('begins at an offset from the end and includes `end` elements', function() {
+    expect.assertions(4);
     const o = [3, '4', {x: 1}, null];
 
     let r = arrayLikeSlice(o, -2, 1);
@@ -85,6 +68,7 @@ describe('arrayLikeSlice', function() {
   });
 
   it('begins at `start` offset from the end and includes all elements up to `end` offset from the end', function() {
+    expect.assertions(5);
     const o = [3, '4', {x: 1}, null];
     let r = arrayLikeSlice(o, -3, -1);
     expect(r).toHaveLength(2);
@@ -99,7 +83,9 @@ describe('arrayLikeSlice', function() {
   });
 
   it('works with arguments', function() {
+    expect.assertions(5);
     const o = (function() {
+      /* eslint-disable-next-line prefer-rest-params */
       return arguments;
     })(3, '4', {x: 1}, null);
 
@@ -116,6 +102,7 @@ describe('arrayLikeSlice', function() {
   });
 
   it('works with strings', function() {
+    expect.assertions(5);
     const o = 'abcd';
     let r = arrayLikeSlice(o, -3, -1);
     expect(r).toHaveLength(2);
@@ -130,6 +117,7 @@ describe('arrayLikeSlice', function() {
   });
 
   it('works with array-like', function() {
+    expect.assertions(5);
     const o = {
       0: 3,
       1: '4',
@@ -151,6 +139,7 @@ describe('arrayLikeSlice', function() {
   });
 
   it('works with sparse arrays', function() {
+    expect.assertions(2);
     const o = new Array(6);
     o[0] = 3;
     o[2] = '4';
@@ -163,6 +152,7 @@ describe('arrayLikeSlice', function() {
   });
 
   itHasDocumentElement('works with DOM nodes', function() {
+    expect.assertions(1);
     const fragment = document.createDocumentFragment();
     const expectedDOM = new Array(5).fill().map(function() {
       const div = document.createElement('div');
