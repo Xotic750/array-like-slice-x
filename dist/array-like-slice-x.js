@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-07-14T22:47:52.685Z",
+  "date": "2019-07-14T22:58:27.049Z",
   "describe": "",
   "description": "Cross-browser array-like slicer.",
   "file": "array-like-slice-x.js",
-  "hash": "db0b26786257553b6d0b",
+  "hash": "e81091a0d3cc87adcd39",
   "license": "MIT",
-  "version": "2.0.1"
+  "version": "2.0.2"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -1777,17 +1777,17 @@ var setRelative = function _setRelative(value, length) {
  * array object selected from begin to end (end not included). The original
  * array will not be modified.
  *
- * @param {!object} arrayLike - The `arguments` to slice.
+ * @param {!object} arrayLike - The array like object to slice.
  * @param {number} [start] - Zero-based index at which to begin extraction.
  *  A negative index can be used, indicating an offset from the end of the
- *  sequence. slice(-2) extracts the last two elements in the sequence.
+ *  sequence. Running slice(-2) extracts the last two elements in the sequence.
  *  If begin is undefined, slice begins from index 0.
  * @param {number} [end] - Zero-based index before which to end extraction.
  *  Slice extracts up to but not including end. For example, slice([0,1,2,3,4],1,4)
  *  extracts the second element through the fourth element (elements indexed
  *  1, 2, and 3).
  *  A negative index can be used, indicating an offset from the end of the
- *  sequence. slice(2,-1) extracts the third element through the second-to-last
+ *  sequence. Running slice(2,-1) extracts the third element through the second-to-last
  *  element in the sequence.
  *  If end is omitted, slice extracts through the end of the sequence (arr.length).
  *  If end is greater than the length of the sequence, slice extracts through
