@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-07-14T22:28:38.236Z",
+  "date": "2019-07-14T22:47:52.685Z",
   "describe": "",
   "description": "Cross-browser array-like slicer.",
   "file": "array-like-slice-x.js",
-  "hash": "2cf82afd3500f4f91381",
+  "hash": "db0b26786257553b6d0b",
   "license": "MIT",
-  "version": "2.0.0"
+  "version": "2.0.1"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -120,7 +120,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -131,7 +131,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 var toStr = Object.prototype.toString;
-var hasSymbols = __webpack_require__(11)();
+var hasSymbols = __webpack_require__(6)();
 
 if (hasSymbols) {
 	var symToStr = Symbol.prototype.toString;
@@ -201,6 +201,33 @@ module.exports = 9007199254740991;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+var getDay = Date.prototype.getDay;
+var tryDateObject = function tryDateObject(value) {
+	try {
+		getDay.call(value);
+		return true;
+	} catch (e) {
+		return false;
+	}
+};
+
+var toStr = Object.prototype.toString;
+var dateClass = '[object Date]';
+var hasToStringTag = typeof Symbol === 'function' && typeof Symbol.toStringTag === 'symbol';
+
+module.exports = function isDateObject(value) {
+	if (typeof value !== 'object' || value === null) { return false; }
+	return hasToStringTag ? tryDateObject(value) : toStr.call(value) === dateClass;
+};
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /**
 *
 *	VALIDATE: undefined
@@ -249,75 +276,7 @@ module.exports = isUndefined;
 
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * @file ES6-compliant shim for ToObject.
- * @see {@link http://www.ecma-international.org/ecma-262/6.0/#sec-toobject|7.1.13 ToObject ( argument )}
- * @version 1.5.0
- * @author Xotic750 <Xotic750@gmail.com>
- * @copyright  Xotic750
- * @license {@link <https://opensource.org/licenses/MIT> MIT}
- * @module to-object-x
- */
-
-
-
-var requireObjectCoercible = __webpack_require__(7);
-var castObject = __webpack_require__(10).Object;
-
-/**
- * The abstract operation ToObject converts argument to a value of
- * type Object.
- *
- * @param {*} value - The `value` to convert.
- * @throws {TypeError} If `value` is a `null` or `undefined`.
- * @returns {!Object} The `value` converted to an object.
- * @example
- * var ToObject = require('to-object-x');
- *
- * ToObject(); // TypeError
- * ToObject(null); // TypeError
- * ToObject('abc'); // Object('abc')
- * ToObject(true); // Object(true)
- * ToObject(Symbol('foo')); // Object(Symbol('foo'))
- */
-module.exports = function toObject(value) {
-  return castObject(requireObjectCoercible(value));
-};
-
-
-/***/ }),
 /* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var getDay = Date.prototype.getDay;
-var tryDateObject = function tryDateObject(value) {
-	try {
-		getDay.call(value);
-		return true;
-	} catch (e) {
-		return false;
-	}
-};
-
-var toStr = Object.prototype.toString;
-var dateClass = '[object Date]';
-var hasToStringTag = typeof Symbol === 'function' && typeof Symbol.toStringTag === 'symbol';
-
-module.exports = function isDateObject(value) {
-	if (typeof value !== 'object' || value === null) { return false; }
-	return hasToStringTag ? tryDateObject(value) : toStr.call(value) === dateClass;
-};
-
-
-/***/ }),
-/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -344,164 +303,14 @@ module.exports = function isString(value) {
 
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * @file ES6-compliant shim for RequireObjectCoercible.
- * @see {@link http://www.ecma-international.org/ecma-262/6.0/#sec-requireobjectcoercible|7.2.1 RequireObjectCoercible ( argument )}
- * @version 1.4.3
- * @author Xotic750 <Xotic750@gmail.com>
- * @copyright  Xotic750
- * @license {@link <https://opensource.org/licenses/MIT> MIT}
- * @module require-object-coercible-x
- */
-
-
-
-var isNil = __webpack_require__(8);
-
-/**
- * The abstract operation RequireObjectCoercible throws an error if argument
- * is a value that cannot be converted to an Object using ToObject.
- *
- * @param {*} value - The `value` to check.
- * @throws {TypeError} If `value` is a `null` or `undefined`.
- * @returns {string} The `value`.
- * @example
- * var RequireObjectCoercible = require('require-object-coercible-x');
- *
- * RequireObjectCoercible(); // TypeError
- * RequireObjectCoercible(null); // TypeError
- * RequireObjectCoercible('abc'); // 'abc'
- * RequireObjectCoercible(true); // true
- * RequireObjectCoercible(Symbol('foo')); // Symbol('foo')
- */
-module.exports = function RequireObjectCoercible(value) {
-  if (isNil(value)) {
-    throw new TypeError('Cannot call method on ' + value);
-  }
-
-  return value;
-};
-
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * @file Checks if `value` is `null` or `undefined`.
- * @version 1.4.2
- * @author Xotic750 <Xotic750@gmail.com>
- * @copyright  Xotic750
- * @license {@link <https://opensource.org/licenses/MIT> MIT}
- * @module is-nil-x
- */
-
-
-
-var isUndefined = __webpack_require__(3);
-var isNull = __webpack_require__(9);
-
-/**
- * Checks if `value` is `null` or `undefined`.
- *
- * @param {*} value - The value to check.
- * @returns {boolean} Returns `true` if `value` is nullish, else `false`.
- * @example
- * var isNil = require('is-nil-x');
- *
- * isNil(null); // => true
- * isNil(void 0); // => true
- * isNil(NaN); // => false
- */
-module.exports = function isNil(value) {
-  return isNull(value) || isUndefined(value);
-};
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-/**
- * lodash 3.0.0 (Custom Build) <https://lodash.com/>
- * Build: `lodash modern modularize exports="npm" -o ./`
- * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
- * Based on Underscore.js 1.7.0 <http://underscorejs.org/LICENSE>
- * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
- * Available under MIT license <https://lodash.com/license>
- */
-
-/**
- * Checks if `value` is `null`.
- *
- * @static
- * @memberOf _
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is `null`, else `false`.
- * @example
- *
- * _.isNull(null);
- * // => true
- *
- * _.isNull(void 0);
- * // => false
- */
-function isNull(value) {
-  return value === null;
-}
-
-module.exports = isNull;
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * @file Constructors cached from literals.
- * @version 1.0.2
- * @author Xotic750 <Xotic750@gmail.com>
- * @copyright  Xotic750
- * @license {@link <https://opensource.org/licenses/MIT> MIT}
- * @module cached-constructors-x
- */
-
-
-
-/**
- * Constructors cached from literals.
- *
- * @type Object
- * @example
- * var constructors = require('cached-constructors-x');
- */
-module.exports = {
-  Array: [].constructor,
-  Boolean: true.constructor,
-  Function: function () {}.constructor,
-  Number: (0).constructor,
-  Object: {}.constructor,
-  RegExp: (/(?:)/).constructor,
-  String: ''.constructor
-};
-
-
-/***/ }),
-/* 11 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {
 
 var origSymbol = global.Symbol;
-var hasSymbolSham = __webpack_require__(13);
+var hasSymbolSham = __webpack_require__(8);
 
 module.exports = function hasNativeSymbols() {
 	if (typeof origSymbol !== 'function') { return false; }
@@ -512,10 +321,10 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(12)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(7)))
 
 /***/ }),
-/* 12 */
+/* 7 */
 /***/ (function(module, exports) {
 
 var g;
@@ -541,7 +350,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 13 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -590,15 +399,61 @@ module.exports = function hasSymbols() {
 
 
 /***/ }),
-/* 14 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 
-// EXTERNAL MODULE: ./node_modules/to-object-x/index.js
-var to_object_x = __webpack_require__(4);
-var to_object_x_default = /*#__PURE__*/__webpack_require__.n(to_object_x);
+// CONCATENATED MODULE: ./node_modules/is-nil-x/dist/is-nil-x.esm.js
+/**
+ * Checks if `value` is `null` or `undefined`.
+ *
+ * @param {*} [value] - The value to check.
+ * @returns {boolean} Returns `true` if `value` is nullish, else `false`.
+ */
+function isNil(value) {
+  /* eslint-disable-next-line lodash/prefer-is-nil */
+  return value === null || typeof value === 'undefined';
+}
+
+
+// CONCATENATED MODULE: ./node_modules/require-object-coercible-x/dist/require-object-coercible-x.esm.js
+
+/**
+ * The abstract operation RequireObjectCoercible throws an error if argument
+ * is a value that cannot be converted to an Object using ToObject.
+ *
+ * @param {*} [value] - The `value` to check.
+ * @throws {TypeError} If `value` is a `null` or `undefined`.
+ * @returns {string} The `value`.
+ */
+
+function requireObjectCoercible(value) {
+  if (isNil(value)) {
+    throw new TypeError("Cannot call method on ".concat(value));
+  }
+
+  return value;
+}
+
+
+// CONCATENATED MODULE: ./node_modules/to-object-x/dist/to-object-x.esm.js
+
+var castObject = {}.constructor;
+/**
+ * The abstract operation ToObject converts argument to a value of
+ * type Object.
+ *
+ * @param {*} value - The `value` to convert.
+ * @throws {TypeError} If `value` is a `null` or `undefined`.
+ * @returns {!object} The `value` converted to an object.
+ */
+
+function toObject(value) {
+  return castObject(requireObjectCoercible(value));
+}
+
 
 // EXTERNAL MODULE: ./node_modules/is-symbol/index.js
 var is_symbol = __webpack_require__(0);
@@ -663,7 +518,7 @@ var is_primitive = __webpack_require__(1);
 var is_primitive_default = /*#__PURE__*/__webpack_require__.n(is_primitive);
 
 // EXTERNAL MODULE: ./node_modules/is-date-object/index.js
-var is_date_object = __webpack_require__(5);
+var is_date_object = __webpack_require__(3);
 var is_date_object_default = /*#__PURE__*/__webpack_require__.n(is_date_object);
 
 // CONCATENATED MODULE: ./node_modules/to-boolean-x/dist/to-boolean-x.esm.js
@@ -728,39 +583,6 @@ function toStringTag(value) {
 /* harmony default export */ var has_to_string_tag_x_esm = (has_symbol_support_x_esm &&
 /* eslint-disable-next-line compat/compat */
 is_symbol_default()(Symbol.toStringTag));
-
-
-// CONCATENATED MODULE: ./node_modules/require-coercible-to-string-x/node_modules/is-nil-x/dist/is-nil-x.esm.js
-/**
- * Checks if `value` is `null` or `undefined`.
- *
- * @param {*} [value] - The value to check.
- * @returns {boolean} Returns `true` if `value` is nullish, else `false`.
- */
-function isNil(value) {
-  /* eslint-disable-next-line lodash/prefer-is-nil */
-  return value === null || typeof value === 'undefined';
-}
-
-
-// CONCATENATED MODULE: ./node_modules/require-coercible-to-string-x/node_modules/require-object-coercible-x/dist/require-object-coercible-x.esm.js
-
-/**
- * The abstract operation RequireObjectCoercible throws an error if argument
- * is a value that cannot be converted to an Object using ToObject.
- *
- * @param {*} [value] - The `value` to check.
- * @throws {TypeError} If `value` is a `null` or `undefined`.
- * @returns {string} The `value`.
- */
-
-function requireObjectCoercible(value) {
-  if (isNil(value)) {
-    throw new TypeError("Cannot call method on ".concat(value));
-  }
-
-  return value;
-}
 
 
 // CONCATENATED MODULE: ./node_modules/to-string-x/dist/to-string-x.esm.js
@@ -1343,39 +1165,6 @@ function isFunction(value, allowClass) {
 }
 
 
-// CONCATENATED MODULE: ./node_modules/to-primitive-x/node_modules/is-nil-x/dist/is-nil-x.esm.js
-/**
- * Checks if `value` is `null` or `undefined`.
- *
- * @param {*} [value] - The value to check.
- * @returns {boolean} Returns `true` if `value` is nullish, else `false`.
- */
-function is_nil_x_esm_isNil(value) {
-  /* eslint-disable-next-line lodash/prefer-is-nil */
-  return value === null || typeof value === 'undefined';
-}
-
-
-// CONCATENATED MODULE: ./node_modules/to-primitive-x/node_modules/require-object-coercible-x/dist/require-object-coercible-x.esm.js
-
-/**
- * The abstract operation RequireObjectCoercible throws an error if argument
- * is a value that cannot be converted to an Object using ToObject.
- *
- * @param {*} [value] - The `value` to check.
- * @throws {TypeError} If `value` is a `null` or `undefined`.
- * @returns {string} The `value`.
- */
-
-function require_object_coercible_x_esm_requireObjectCoercible(value) {
-  if (is_nil_x_esm_isNil(value)) {
-    throw new TypeError("Cannot call method on ".concat(value));
-  }
-
-  return value;
-}
-
-
 // CONCATENATED MODULE: ./node_modules/to-primitive-x/dist/to-primitive-x.esm.js
 
 
@@ -1414,7 +1203,7 @@ var orderLength = 2;
  */
 
 var ordinaryToPrimitive = function _ordinaryToPrimitive(ordinary, hint) {
-  require_object_coercible_x_esm_requireObjectCoercible(ordinary);
+  requireObjectCoercible(ordinary);
 
   if (typeof hint !== 'string' || hint !== NUMBER && hint !== STRING) {
     throw new TypeError('hint must be "string" or "number"');
@@ -1448,7 +1237,7 @@ var ordinaryToPrimitive = function _ordinaryToPrimitive(ordinary, hint) {
 var getMethod = function _getMethod(object, property) {
   var func = object[property];
 
-  if (is_nil_x_esm_isNil(func) === false) {
+  if (isNil(func) === false) {
     if (isFunction(func) === false) {
       throw new TypeError("".concat(func, " returned for property ").concat(property, " of object ").concat(object, " is not a function"));
     }
@@ -1921,7 +1710,7 @@ function toLength2018(value) {
 
 
 // EXTERNAL MODULE: ./node_modules/validate.io-undefined/lib/index.js
-var lib = __webpack_require__(3);
+var lib = __webpack_require__(4);
 var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
 
 // CONCATENATED MODULE: ./node_modules/has-boxed-string-x/dist/has-boxed-string-x.esm.js
@@ -1941,7 +1730,7 @@ var hasBoxed = boxedString[0] === has_boxed_string_x_esm_string && 0 in boxedStr
 
 
 // EXTERNAL MODULE: ./node_modules/is-string/index.js
-var is_string = __webpack_require__(6);
+var is_string = __webpack_require__(5);
 var is_string_default = /*#__PURE__*/__webpack_require__.n(is_string);
 
 // CONCATENATED MODULE: ./node_modules/split-if-boxed-bug-x/dist/split-if-boxed-bug-x.esm.js
@@ -2008,7 +1797,7 @@ var setRelative = function _setRelative(value, length) {
 
 
 function slice(arrayLike, start, end) {
-  var iterable = splitIfBoxedBug(to_object_x_default()(arrayLike));
+  var iterable = splitIfBoxedBug(toObject(arrayLike));
   var length = toLength2018(iterable.length);
   var k = setRelative(toInteger2018(start), length);
   var relativeEnd = lib_default()(end) ? length : toInteger2018(end);
