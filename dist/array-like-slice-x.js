@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-07-15T12:28:47.815Z",
+  "date": "2019-07-15T13:09:36.026Z",
   "describe": "",
   "description": "Cross-browser array-like slicer.",
   "file": "array-like-slice-x.js",
-  "hash": "a96b012ad9389df60b6c",
+  "hash": "e81091a0d3cc87adcd39",
   "license": "MIT",
-  "version": "2.0.4"
+  "version": "2.0.5"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -585,39 +585,6 @@ function toStringTag(value) {
 is_symbol_default()(Symbol.toStringTag));
 
 
-// CONCATENATED MODULE: ./node_modules/require-coercible-to-string-x/node_modules/is-nil-x/dist/is-nil-x.esm.js
-/**
- * Checks if `value` is `null` or `undefined`.
- *
- * @param {*} [value] - The value to check.
- * @returns {boolean} Returns `true` if `value` is nullish, else `false`.
- */
-function is_nil_x_esm_isNil(value) {
-  /* eslint-disable-next-line lodash/prefer-is-nil */
-  return value === null || typeof value === 'undefined';
-}
-
-
-// CONCATENATED MODULE: ./node_modules/require-coercible-to-string-x/node_modules/require-object-coercible-x/dist/require-object-coercible-x.esm.js
-
-/**
- * The abstract operation RequireObjectCoercible throws an error if argument
- * is a value that cannot be converted to an Object using ToObject.
- *
- * @param {*} [value] - The `value` to check.
- * @throws {TypeError} If `value` is a `null` or `undefined`.
- * @returns {string} The `value`.
- */
-
-function require_object_coercible_x_esm_requireObjectCoercible(value) {
-  if (is_nil_x_esm_isNil(value)) {
-    throw new TypeError("Cannot call method on ".concat(value));
-  }
-
-  return value;
-}
-
-
 // CONCATENATED MODULE: ./node_modules/to-string-x/dist/to-string-x.esm.js
 
 var ERROR_MESSAGE = 'Cannot convert a Symbol value to a string';
@@ -651,7 +618,7 @@ function ToString(value) {
  */
 
 function requireCoercibleToString(value) {
-  return ToString(require_object_coercible_x_esm_requireObjectCoercible(value));
+  return ToString(requireObjectCoercible(value));
 }
 
 
@@ -1198,39 +1165,6 @@ function isFunction(value, allowClass) {
 }
 
 
-// CONCATENATED MODULE: ./node_modules/to-primitive-x/node_modules/is-nil-x/dist/is-nil-x.esm.js
-/**
- * Checks if `value` is `null` or `undefined`.
- *
- * @param {*} [value] - The value to check.
- * @returns {boolean} Returns `true` if `value` is nullish, else `false`.
- */
-function dist_is_nil_x_esm_isNil(value) {
-  /* eslint-disable-next-line lodash/prefer-is-nil */
-  return value === null || typeof value === 'undefined';
-}
-
-
-// CONCATENATED MODULE: ./node_modules/to-primitive-x/node_modules/require-object-coercible-x/dist/require-object-coercible-x.esm.js
-
-/**
- * The abstract operation RequireObjectCoercible throws an error if argument
- * is a value that cannot be converted to an Object using ToObject.
- *
- * @param {*} [value] - The `value` to check.
- * @throws {TypeError} If `value` is a `null` or `undefined`.
- * @returns {string} The `value`.
- */
-
-function dist_require_object_coercible_x_esm_requireObjectCoercible(value) {
-  if (dist_is_nil_x_esm_isNil(value)) {
-    throw new TypeError("Cannot call method on ".concat(value));
-  }
-
-  return value;
-}
-
-
 // CONCATENATED MODULE: ./node_modules/to-primitive-x/dist/to-primitive-x.esm.js
 
 
@@ -1269,7 +1203,7 @@ var orderLength = 2;
  */
 
 var ordinaryToPrimitive = function _ordinaryToPrimitive(ordinary, hint) {
-  dist_require_object_coercible_x_esm_requireObjectCoercible(ordinary);
+  requireObjectCoercible(ordinary);
 
   if (typeof hint !== 'string' || hint !== NUMBER && hint !== STRING) {
     throw new TypeError('hint must be "string" or "number"');
@@ -1303,7 +1237,7 @@ var ordinaryToPrimitive = function _ordinaryToPrimitive(ordinary, hint) {
 var getMethod = function _getMethod(object, property) {
   var func = object[property];
 
-  if (dist_is_nil_x_esm_isNil(func) === false) {
+  if (isNil(func) === false) {
     if (isFunction(func) === false) {
       throw new TypeError("".concat(func, " returned for property ").concat(property, " of object ").concat(object, " is not a function"));
     }
