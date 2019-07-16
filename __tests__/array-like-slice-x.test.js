@@ -85,7 +85,6 @@ describe('arrayLikeSlice', function() {
   it('works with arguments', function() {
     expect.assertions(5);
     const o = (function() {
-      /* eslint-disable-next-line prefer-rest-params */
       return arguments;
     })(3, '4', {x: 1}, null);
 
