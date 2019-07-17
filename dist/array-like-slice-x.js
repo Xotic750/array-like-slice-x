@@ -2,11 +2,11 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-07-16T21:22:22.270Z",
+  "date": "2019-07-17T11:36:19.031Z",
   "describe": "",
   "description": "Cross-browser array-like slicer.",
   "file": "array-like-slice-x.js",
-  "hash": "e81091a0d3cc87adcd39",
+  "hash": "a3beda7cea04a0859c1e",
   "license": "MIT",
   "version": "2.0.8"
 }
@@ -120,7 +120,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -131,7 +131,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 var toStr = Object.prototype.toString;
-var hasSymbols = __webpack_require__(6)();
+var hasSymbols = __webpack_require__(5)();
 
 if (hasSymbols) {
 	var symToStr = Symbol.prototype.toString;
@@ -228,58 +228,6 @@ module.exports = function isDateObject(value) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/**
-*
-*	VALIDATE: undefined
-*
-*
-*	DESCRIPTION:
-*		- Validates if a value is undefined.
-*
-*
-*	NOTES:
-*		[1]
-*
-*
-*	TODO:
-*		[1]
-*
-*
-*	LICENSE:
-*		MIT
-*
-*	Copyright (c) 2014. Athan Reines.
-*
-*
-*	AUTHOR:
-*		Athan Reines. kgryte@gmail.com. 2014.
-*
-*/
-
-
-
-/**
-* FUNCTION: isUndefined( value )
-*	Validates if a value is undefined.
-*
-* @param {*} value - value to be validated
-* @returns {Boolean} boolean indicating whether value is undefined
-*/
-function isUndefined( value ) {
-	return value === void 0;
-} // end FUNCTION isUndefined()
-
-
-// EXPORTS //
-
-module.exports = isUndefined;
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 
 
 var strValue = String.prototype.valueOf;
@@ -303,14 +251,14 @@ module.exports = function isString(value) {
 
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {
 
 var origSymbol = global.Symbol;
-var hasSymbolSham = __webpack_require__(8);
+var hasSymbolSham = __webpack_require__(7);
 
 module.exports = function hasNativeSymbols() {
 	if (typeof origSymbol !== 'function') { return false; }
@@ -321,10 +269,10 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(6)))
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports) {
 
 var g;
@@ -350,7 +298,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -399,7 +347,7 @@ module.exports = function hasSymbols() {
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1709,10 +1657,6 @@ function toLength2018(value) {
 }
 
 
-// EXTERNAL MODULE: ./node_modules/validate.io-undefined/lib/index.js
-var lib = __webpack_require__(4);
-var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
-
 // CONCATENATED MODULE: ./node_modules/has-boxed-string-x/dist/has-boxed-string-x.esm.js
 var has_boxed_string_x_esm_string = 'a';
 var boxedString = {}.constructor(has_boxed_string_x_esm_string);
@@ -1730,7 +1674,7 @@ var hasBoxed = boxedString[0] === has_boxed_string_x_esm_string && 0 in boxedStr
 
 
 // EXTERNAL MODULE: ./node_modules/is-string/index.js
-var is_string = __webpack_require__(5);
+var is_string = __webpack_require__(4);
 var is_string_default = /*#__PURE__*/__webpack_require__.n(is_string);
 
 // CONCATENATED MODULE: ./node_modules/split-if-boxed-bug-x/dist/split-if-boxed-bug-x.esm.js
@@ -1754,8 +1698,6 @@ function splitIfBoxedBug(value) {
 
 
 // CONCATENATED MODULE: ./dist/array-like-slice-x.esm.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return slice; });
-
 
 
 
@@ -1796,11 +1738,11 @@ var setRelative = function _setRelative(value, length) {
  */
 
 
-function slice(arrayLike, start, end) {
+var array_like_slice_x_esm_slice = function slice(arrayLike, start, end) {
   var iterable = splitIfBoxedBug(toObject(arrayLike));
   var length = toLength2018(iterable.length);
   var k = setRelative(toInteger2018(start), length);
-  var relativeEnd = lib_default()(end) ? length : toInteger2018(end);
+  var relativeEnd = typeof end === 'undefined' ? length : toInteger2018(end);
   var finalEnd = setRelative(relativeEnd, length);
   var val = [];
   val.length = getMax(finalEnd - k, 0);
@@ -1816,7 +1758,9 @@ function slice(arrayLike, start, end) {
   }
 
   return val;
-}
+};
+
+/* harmony default export */ var array_like_slice_x_esm = __webpack_exports__["default"] = (array_like_slice_x_esm_slice);
 
 
 

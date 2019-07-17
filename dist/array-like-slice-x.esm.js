@@ -1,7 +1,6 @@
 import toObject from 'to-object-x';
 import toInteger from 'to-integer-x';
 import toLength from 'to-length-x';
-import isUndefined from 'validate.io-undefined';
 import splitIfBoxedBug from 'split-if-boxed-bug-x';
 
 var getMax = function _getMax(a, b) {
@@ -39,11 +38,11 @@ var setRelative = function _setRelative(value, length) {
  */
 
 
-export default function slice(arrayLike, start, end) {
+var slice = function slice(arrayLike, start, end) {
   var iterable = splitIfBoxedBug(toObject(arrayLike));
   var length = toLength(iterable.length);
   var k = setRelative(toInteger(start), length);
-  var relativeEnd = isUndefined(end) ? length : toInteger(end);
+  var relativeEnd = typeof end === 'undefined' ? length : toInteger(end);
   var finalEnd = setRelative(relativeEnd, length);
   var val = [];
   val.length = getMax(finalEnd - k, 0);
@@ -59,6 +58,8 @@ export default function slice(arrayLike, start, end) {
   }
 
   return val;
-}
+};
+
+export default slice;
 
 //# sourceMappingURL=array-like-slice-x.esm.js.map

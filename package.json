@@ -52,8 +52,7 @@
     "split-if-boxed-bug-x": "^2.0.7",
     "to-integer-x": "^4.0.11",
     "to-length-x": "^4.0.6",
-    "to-object-x": "^2.0.4",
-    "validate.io-undefined": "^1.0.3"
+    "to-object-x": "^2.0.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.0",

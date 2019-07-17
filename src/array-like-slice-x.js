@@ -1,7 +1,6 @@
 import toObject from 'to-object-x';
 import toInteger from 'to-integer-x';
 import toLength from 'to-length-x';
-import isUndefined from 'validate.io-undefined';
 import splitIfBoxedBug from 'split-if-boxed-bug-x';
 
 const getMax = function _getMax(a, b) {
@@ -38,11 +37,11 @@ const setRelative = function _setRelative(value, length) {
  *  the end of the sequence (arr.length).
  * @returns {Array} A new array containing the extracted elements.
  */
-export default function slice(arrayLike, start, end) {
+const slice = function slice(arrayLike, start, end) {
   const iterable = splitIfBoxedBug(toObject(arrayLike));
   const length = toLength(iterable.length);
   let k = setRelative(toInteger(start), length);
-  const relativeEnd = isUndefined(end) ? length : toInteger(end);
+  const relativeEnd = typeof end === 'undefined' ? length : toInteger(end);
   const finalEnd = setRelative(relativeEnd, length);
   const val = [];
   val.length = getMax(finalEnd - k, 0);
@@ -57,4 +56,6 @@ export default function slice(arrayLike, start, end) {
   }
 
   return val;
-}
+};
+
+export default slice;
