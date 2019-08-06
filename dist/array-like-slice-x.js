@@ -2,7 +2,7 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-08-06T00:35:30.648Z",
+  "date": "2019-08-06T21:02:08.956Z",
   "describe": "",
   "description": "Cross-browser array-like slicer.",
   "file": "array-like-slice-x.js",
