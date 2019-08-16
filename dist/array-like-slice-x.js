@@ -2,11 +2,11 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) 2017",
-  "date": "2019-08-15T18:43:45.030Z",
+  "date": "2019-08-16T23:14:30.933Z",
   "describe": "",
   "description": "Cross-browser array-like slicer.",
   "file": "array-like-slice-x.js",
-  "hash": "135106a117e643f27049",
+  "hash": "de87b5d1305c24c8da42",
   "license": "MIT",
   "version": "2.2.0"
 }
@@ -1613,15 +1613,15 @@ var splitIfBoxedBug = function splitIfBoxedBug(value) {
 
 
 
-var getMax = function _getMax(a, b) {
+var getMax = function getMax(a, b) {
   return a >= b ? a : b;
 };
 
-var getMin = function _getMin(a, b) {
+var getMin = function getMin(a, b) {
   return a <= b ? a : b;
 };
 
-var setRelative = function _setRelative(value, length) {
+var setRelative = function setRelative(value, length) {
   return value < 0 ? getMax(length + value, 0) : getMin(value, length);
 };
 /**

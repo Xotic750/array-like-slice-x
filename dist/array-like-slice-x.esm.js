@@ -3,15 +3,15 @@ import toInteger from 'to-integer-x';
 import toLength from 'to-length-x';
 import splitIfBoxedBug from 'split-if-boxed-bug-x';
 
-var getMax = function _getMax(a, b) {
+var getMax = function getMax(a, b) {
   return a >= b ? a : b;
 };
 
-var getMin = function _getMin(a, b) {
+var getMin = function getMin(a, b) {
   return a <= b ? a : b;
 };
 
-var setRelative = function _setRelative(value, length) {
+var setRelative = function setRelative(value, length) {
   return value < 0 ? getMax(length + value, 0) : getMin(value, length);
 };
 /**

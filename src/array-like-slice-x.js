@@ -3,15 +3,15 @@ import toInteger from 'to-integer-x';
 import toLength from 'to-length-x';
 import splitIfBoxedBug from 'split-if-boxed-bug-x';
 
-const getMax = function _getMax(a, b) {
+const getMax = function getMax(a, b) {
   return a >= b ? a : b;
 };
 
-const getMin = function _getMin(a, b) {
+const getMin = function getMin(a, b) {
   return a <= b ? a : b;
 };
 
-const setRelative = function _setRelative(value, length) {
+const setRelative = function setRelative(value, length) {
   return value < 0 ? getMax(length + value, 0) : getMin(value, length);
 };
 
