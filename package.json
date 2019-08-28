@@ -1,6 +1,6 @@
 {
   "name": "array-like-slice-x",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Cross-browser array-like slicer.",
   "homepage": "https://github.com/Xotic750/array-like-slice-x",
   "author": {
@@ -51,10 +51,10 @@
     "url": "https://github.com/Xotic750/array-like-slice-x/issues"
   },
   "dependencies": {
-    "split-if-boxed-bug-x": "^2.1.1",
-    "to-integer-x": "^4.2.1",
-    "to-length-x": "^4.2.1",
-    "to-object-x": "^2.2.0"
+    "split-if-boxed-bug-x": "^2.1.2",
+    "to-integer-x": "^4.2.2",
+    "to-length-x": "^4.2.2",
+    "to-object-x": "^2.2.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
